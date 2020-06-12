@@ -64,61 +64,61 @@
           symbol: symbolGenerator
           };
 
-// DOM(Document Object Model) Elements:
-          /*
-            1. 
-          */
+ // Function that is triggered that generates the password:
 
-            
+      function generatePassword(){
 
+            // Asks the user to input information on what kind of password is desired:
+                var length = prompt("Enter the number of characters between 8-128 that you want in your password.");
+                    length = parseInt(length, 10);
+                
+                if (length < 8) {
+                  alert("You cannot have a password below 8 characters in length!");
+                  return;
+                } else if(length > 128) {
+                  alert("You cannot have a password above 128 characters in length!");
+                  return;
+                }
 
+                var hasLower = confirm("Do you want lower case letters in your password?");
+                var hasUpper = confirm("Do you want upper case letters in your password?");
+                var hasNumber = confirm("Do you want numbers in your password?");
+                var hasSymbol = confirm("Do you want symbols in your password?");
 
+        
 
-function generatePassword(){
-    // The password generation function goes here.
+       }
 
-    // First create an alert that asks "How many characters do you want the password to be?." Then store this integer as a var
-    var numOfChar = prompt("What is the number of characters you want in your password?");
-    // Convert string to Integer:
-    var numOfChar = parseInt(numOfChar, 10); 
+          
 
-
-  return numOfChar
-  //return means that same data value is created and then can be stored in a variable. In this case, the variable = password.
-};
-
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-// The writePassword() function is fired when the generateBtn is clicked as shown in line 16
-function writePassword() {
-  var password = generatePassword();
-    //the generatePassword() function has not been created  as of 10Jun2020. We have to make it.
-    //Once the generatePassword() function is triggered. A password is created and stored in the variable   password
-  var passwordText = document.querySelector("#password");
-    //This variable grabs the password variable and displays it on the webpage. 
-    //It's hooking up onto an element on the webpage.
-
-  passwordText.value = password;
-    //This function hooks passwordText to the password variable which is then displayed.
-
-};
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
-/*  
-    * Research Concatenate!!! Works great on this homework
-    * Research Push
-    * You might have to create a variable for all your characters.
-    * For all your characters, you might have to create a variable for each character in the password. Then convert each variable to a string and then combine the string into the password. Maybe produce an array.
-    * You want to have a string or array containing all uppercase letters, one for all lower case letters, one for all special characters, one for all numbers so that you can take values from the array and use them.
-    * Google "how do I get an array of all upper case letters?" You don't have to do it manually.
-    * So think of different containers each comtaining different things. so you have 4 different variables.
-        * Depending on what the user chooses, you can pull from these containers and push or combine them into one big container. And then you can build a password from that big container.  
-*/ 
+        
     
+    
+    
+ 
+
+
+// DOM (Document Object Model) Elements that link javascript to elements on the webpage:
+
+        // This DOM links any element on the webpage with the ID "generate" with the variable generateBtn 
+          var generateBtn = document.querySelector("#generate");
+
+        // These Doms add a properties to the variable generateBtn where if a "button click" is sensed on any webpage element with the ID "generate", the functions promptInput and writePassword are triggered.
+          generateBtn.addEventListener("click", writePassword);
+
+        // When triggered by a button click, the writePassword function will then trigger the generatePassword function which will then generate a password. That password will then be displayed in the text area element which has the id = "password".
+          function writePassword() {
+            var password = generatePassword();
+            var passwordText = document.querySelector("#password");
+              
+            passwordText.value = password;
+          };
+
+    
+
+
+
+
    
   
 
