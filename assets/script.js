@@ -10,10 +10,6 @@
 
     var arraySymbol = [" ", "!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "_", "-", "/" ];
 
-    // Array that will house the randomly generated characters to be compiled into the final password:
-
-        var arrayPassword = []; 
-
 
 // Generator Functions (Functions that generate the random lower case letters, upper case letters, numbers and symbols):
 
@@ -68,7 +64,8 @@
 
       function generatePassword(){
 
-            // Asks the user to input information on what kind of password is desired:
+            // First, ask the user to input information on what kind of password is desired:
+
                 var length = prompt("Enter the number of characters between 8-128 that you want in your password.");
                     length = parseInt(length, 10);
                 
@@ -84,6 +81,55 @@
                 var hasUpper = confirm("Do you want upper case letters in your password?");
                 var hasNumber = confirm("Do you want numbers in your password?");
                 var hasSymbol = confirm("Do you want symbols in your password?");
+            
+            // Second, initialize the password variable. This variable will contain a string that we continuously build on to create the password.
+
+                // Initialize empty password variable. (Already initialized)
+                    let passwordContainer = "";
+                
+
+                // Initialize variable that count the types of characters(lowercase, uppercase, numbers, symbols) selected by the user"
+                const typesCount = lower + upper + number + symbol;
+
+                console.log('typesCount: ', typesCount);
+
+
+            // Third, filter out false variables. If any of the four variables hasLower, hasUpper, hasNumber and/or hasSymbol is unchecked, that variable will not be used in the password generator.
+
+                // What we need is to build later is an array of objects with the below array as keys.
+                // In order to do that we wrap each variable in curly braces.
+                // This allows the console to display a more informative array that shows the type of characters available for the password and whether or not the user wants them in the password.
+                // This array of true and false values for each type can then be used to filter out the types that are false or not desired by the user
+                // To filter out the false types, we use the filter method:
+
+                const typesArray =[{lower}, {upper}, {number}, {symbol}].filter
+                ( // I'll have to research this section more to understand.
+                  item => Object.values(item)[0]
+                );
+
+                console.log('typesArray: ', typesArray);
+
+                // The following if else statement was inserted for the condition if the user didn't want any lower case letters, upper case letters, numbers, or symbols.
+                if (typesCount === 0) {
+                  return " You have chosen to have no types of characters in your password. Therefore a password cannot be generated. Why did you do that???"
+                }
+
+            // Fourth, we loop over the length of characters that the user has chosen and call a random generator function for each type.
+
+                for(let i = 0; i < length; i += typesCount) {
+                  // We are going to loop through the types array using the forEach high order array method?! for each type of character and then use the random generators stored in the randomFunctions array. We only want the first value, so we set the Object.keys to 0.
+                  typesArray.forEach(type=> {
+                    const functName = Object.keys(type)[0];
+                    // Console log it so I can understand what this shit is...
+                    // The console log will show that we are iterating over the chosen character types in order and generating a random value chosen from the arrays we created earlier.
+                    console.log('functName: ', functName);
+
+                    // Now we append values into the empty password container using the random characters generators stored in the random functions array: 
+                    passwordContainer += randomFunctions[functName]();
+                  });
+                }
+
+            // Fifth Add the final password to the password variable and then return the result into the text box on the webpage.
 
         
 
