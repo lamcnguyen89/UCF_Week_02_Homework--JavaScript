@@ -11,20 +11,13 @@
     var arraySymbol = [" ", "!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "_", "-", "/" ];
 
     
-    // Initialize random functions array.
+    // Empty Containers:
     let password = [];
     let randomChar = "";
     let totalPassword;
 
 
 // Generator Functions (Functions that generate the random lower case letters, upper case letters, numbers and symbols):
-
-         /*
-            * Math.Random creates a number between 0 and 1.
-            * Math.floor rounds a decimal number down to the nearest whole number. 
-            * The reason we multiply Math.random by 26 or the arrayLowerChar.length is because there are 26 lower case characters in the lower case array name arrayLowerChar.
-            * The function below returns a random string from arrayLowerChar:
-          */ 
 
         // Function for when the user wants lower case letters in the password:
             function lowerCaseGenerator() {
@@ -95,29 +88,22 @@
                 if (hasSymbol === true) {
                   var symbol =symbolGenerator()
                   totalPassword += password.concat(symbol);
-                }
-
-                
-
-                // Create a function that randomly chooses from the randomFunc array:
-
-                
+                }          
 
                totalPassword = totalPassword.replace(/,/g, "") 
                console.log("This is our password so far: " + totalPassword);
-            // Fifth, we loop over the length of characters that the user has chosen and call a random generator function for each type:
+            // Fourth, we loop over the length of characters that the user has chosen and call a random generator function for each type:
             console.log("Password Length: " + lengthOfPassword)
-            for (let i=0; i < lengthOfPassword; i++) {
-                 console.log(totalPassword[Math.floor(Math.random() * totalPassword.length)])
-                 randomChar += totalPassword[Math.floor(Math.random() * totalPassword.length)];
 
+            for (let i=0; i < lengthOfPassword; i++) {
+
+                 console.log(totalPassword[Math.floor(Math.random() * totalPassword.length)])
+
+                 randomChar += totalPassword[Math.floor(Math.random() * totalPassword.length)];
 
             }
 
             console.log("Random= " + randomChar)
-
-                 
-            // Sixth Add the final password to the password variable and then return the result into the text box on the webpage:
 
             return randomChar;
 
@@ -133,6 +119,7 @@
 
         // When triggered by a button click, the writePassword function will then trigger the generatePassword function which will then generate a password. That password will then be displayed in the text area element which has the id = "password".
           function writePassword() {
+            // set password to blank each time to reset the function so that the passwords aren't adding together.
             var password = "";
             password = generatePassword();
             var passwordText = document.querySelector("#password");
